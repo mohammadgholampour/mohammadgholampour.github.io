@@ -1,406 +1,521 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammad Gholampour Eliato - Backend Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Visualization & Content Choices:
-        - Hero: Text, CTAs. Goal: Immediate impact, navigation. Interaction: Button clicks. Added download links for both English and Persian resumes.
-        - About Me: Paragraph text. Goal: Personal narrative, motivation. Interaction: Read.
-        - Skills: HTML Table. Goal: Clear, scannable overview of technical abilities. Interaction: Read. Icons (Unicode) for visual aid. Made table horizontally scrollable on mobile.
-        - Experience: Text, bullet points. Goal: Detail professional roles and achievements. Interaction: Read.
-        - Projects: Card-based layout. Each card: Title, description, technologies (text/Unicode icons). GitHub links removed. Goal: Showcase practical application of skills. Stacked on mobile.
-        - Contact: Text, links, button. Goal: Enable easy contact and resume access. Interaction: Clickable links, download button. Added download links for both English and Persian resumes.
-        - NO CHARTS USED: The nature of a resume website does not necessitate complex data visualizations with Chart.js or Plotly.js. Focus is on textual and structural presentation of qualifications.
-        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Icons are Unicode characters or simple CSS-styled HTML elements.
-        - Responsiveness: Added mobile navigation (hamburger menu) and adjusted layouts/fonts for smaller screens. -->
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #FAF7F5;
-            color: #333333;
-            scroll-behavior: smooth;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mohammad Gholampour - Backend Developer specializing in Python, Django, FastAPI, PostgreSQL, and REST API development.">
+  <title>Mohammad Gholampour - Backend Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#172033",
+            muted: "#5f6f86",
+            line: "#dbe5f0",
+            paper: "#f6f8fb",
+            brand: "#1f3a5f",
+            copper: "#9a6735"
+          },
+          boxShadow: {
+            soft: "0 18px 60px rgba(23, 32, 51, 0.10)"
+          }
         }
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-        }
-        .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), #E0E7FF;
-        }
-        .accent-primary {
-            background-color: #007A7A;
-            color: white;
-        }
-        .accent-primary:hover {
-            background-color: #005C5C;
-        }
-        .accent-secondary {
-            border-color: #007A7A;
-            color: #007A7A;
-        }
-        .accent-secondary:hover {
-            background-color: #007A7A;
-            color: white;
-        }
-        nav a.nav-item { /* Applied to desktop nav items */
-            transition: color 0.3s ease;
-        }
-        nav a.nav-item:hover, nav a.nav-item.active { /* Applied to desktop nav items */
-            color: #007A7A;
-            font-weight: 600;
-        }
-        .section-title {
-            color: #005C5C;
-        }
-        .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .skill-icon {
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
-            color: #007A7A;
-        }
-        .social-icon {
-            transition: transform 0.3s ease;
-        }
-        .social-icon:hover {
-            transform: scale(1.2);
-        }
-        /* Mobile Navigation Specific Styles */
-        #mobile-menu a {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        #mobile-menu a:hover {
-            background-color: #E0E7FF; /* Light background on hover for mobile links */
-            color: #005C5C; /* Darker teal text on hover */
-        }
-    </style>
+      }
+    };
+  </script>
+  <style>
+    html {
+      scroll-padding-top: 5.25rem;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(154, 103, 53, 0.12), transparent 26rem),
+        linear-gradient(180deg, #ffffff 0%, #f6f8fb 42%, #eef3f8 100%);
+      color: #172033;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(18px);
+      transition: box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+    }
+
+    .is-scrolled {
+      border-color: rgba(31, 58, 95, 0.14);
+      box-shadow: 0 10px 32px rgba(23, 32, 51, 0.08);
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 1px solid rgba(31, 58, 95, 0.14);
+      background: rgba(255, 255, 255, 0.78);
+      color: #1f3a5f;
+      border-radius: 999px;
+      padding: 0.42rem 0.7rem;
+      font-size: 0.82rem;
+      font-weight: 650;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .stack-chip {
+      border-color: rgba(154, 103, 53, 0.20);
+      background: rgba(154, 103, 53, 0.08);
+      color: #744820;
+      font-size: 0.76rem;
+      padding: 0.34rem 0.56rem;
+    }
+
+    section[id] {
+      scroll-margin-top: 5.25rem;
+    }
+
+    article {
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    article:hover {
+      border-color: rgba(31, 58, 95, 0.24);
+      box-shadow: 0 16px 42px rgba(23, 32, 51, 0.08);
+      transform: translateY(-2px);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(154, 103, 53, 0.42);
+      outline-offset: 3px;
+    }
+
+    ::selection {
+      background: rgba(31, 58, 95, 0.16);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: 0.45rem;
+      left: -2.05rem;
+      width: 0.78rem;
+      height: 0.78rem;
+      border: 3px solid #ffffff;
+      border-radius: 999px;
+      background: #9a6735;
+      box-shadow: 0 0 0 2px rgba(154, 103, 53, 0.28);
+    }
+
+    @media (max-width: 767px) {
+      .timeline-item::before {
+        left: -1.5rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
-<body class="leading-relaxed">
+<body class="leading-relaxed antialiased">
+  <header id="header" class="fixed inset-x-0 top-0 z-50 border-b border-line/80 glass">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+      <a href="#hero" class="text-base font-black tracking-tight text-ink sm:text-lg">Mohammad Gholampour</a>
 
-    <header id="header" class="bg-white/80 backdrop-blur-md shadow-md fixed top-0 left-0 right-0 z-50">
-        <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-            <a href="#hero" class="text-xl sm:text-2xl font-bold text-[#333333] hover:text-[#007A7A]">Mohammad Gholampour</a>
-            
-            <nav class="hidden md:flex space-x-2 lg:space-x-4">
-                <a href="#about" class="nav-item text-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
-                <a href="#skills" class="nav-item text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Skills</a>
-                <a href="#experience" class="nav-item text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Experience</a>
-                <a href="#projects" class="nav-item text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-                <a href="#contact" class="nav-item text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-            </nav>
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
+        <a href="#about" class="nav-item rounded-full px-3 py-2 text-sm font-semibold text-muted transition hover:text-brand">About</a>
+        <a href="#skills" class="nav-item rounded-full px-3 py-2 text-sm font-semibold text-muted transition hover:text-brand">Skills</a>
+        <a href="#experience" class="nav-item rounded-full px-3 py-2 text-sm font-semibold text-muted transition hover:text-brand">Experience</a>
+        <a href="#education" class="nav-item rounded-full px-3 py-2 text-sm font-semibold text-muted transition hover:text-brand">Education</a>
+        <a href="#contact" class="nav-item rounded-full px-3 py-2 text-sm font-semibold text-muted transition hover:text-brand">Contact</a>
+      </nav>
 
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-800 focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h16" />
-                    </svg>
-                </button>
+      <a href="Mohammad_Gholampour_Resume_EN.pdf" download class="hidden rounded-full bg-brand px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-[#172b47] sm:inline-flex">
+        Download CV
+      </a>
+
+      <button id="mobile-menu-button" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-brand md:hidden" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="block h-0.5 w-5 bg-current shadow-[0_6px_0_currentColor,0_-6px_0_currentColor]"></span>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden border-t border-line bg-white md:hidden">
+      <nav class="mx-auto grid max-w-6xl px-4 py-3 text-sm font-semibold text-muted" aria-label="Mobile navigation">
+        <a href="#about" class="rounded-lg px-3 py-2 hover:bg-paper hover:text-brand">About</a>
+        <a href="#skills" class="rounded-lg px-3 py-2 hover:bg-paper hover:text-brand">Skills</a>
+        <a href="#experience" class="rounded-lg px-3 py-2 hover:bg-paper hover:text-brand">Experience</a>
+        <a href="#education" class="rounded-lg px-3 py-2 hover:bg-paper hover:text-brand">Education</a>
+        <a href="#contact" class="rounded-lg px-3 py-2 hover:bg-paper hover:text-brand">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="relative overflow-hidden px-4 pt-28 sm:px-6 lg:pt-32">
+      <div class="mx-auto grid max-w-6xl gap-10 pb-16 pt-10 md:grid-cols-[1.18fr_0.82fr] md:items-center md:pb-24">
+        <div>
+          <p class="mb-5 inline-flex rounded-full border border-brand/15 bg-white/80 px-4 py-2 text-sm font-bold text-brand shadow-sm">
+            Open to Remote &amp; International Roles
+          </p>
+          <h1 class="max-w-4xl text-4xl font-black leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            Mohammad Gholampour
+          </h1>
+          <p class="mt-4 text-xl font-bold text-brand sm:text-2xl">
+            Backend Developer | Python &amp; Django &amp; FastAPI
+          </p>
+          <p class="mt-6 max-w-3xl text-base leading-8 text-muted sm:text-lg">
+            Backend Developer with 1+ year of experience in logistics, healthcare, and international real estate CRM. Specialized in Django, FastAPI, and PostgreSQL, with 30+ production API endpoints delivered across 3 live projects at Dayamooz.
+          </p>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a class="chip hover:border-brand/40 hover:bg-white" href="tel:+989930142744">+98 993 014 2744</a>
+            <a class="chip hover:border-brand/40 hover:bg-white" href="mailto:m.gholampour2002@gmail.com">m.gholampour2002@gmail.com</a>
+            <a class="chip hover:border-brand/40 hover:bg-white" href="https://www.linkedin.com/in/mohammadgholampour" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="Mohammad_Gholampour_Resume_EN.pdf" download class="inline-flex items-center justify-center rounded-xl bg-brand px-6 py-3.5 text-base font-black text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#172b47]">
+              Download English Resume
+            </a>
+            <a href="#contact" class="inline-flex items-center justify-center rounded-xl border border-brand/25 bg-white px-6 py-3.5 text-base font-black text-brand transition hover:-translate-y-0.5 hover:border-brand">
+              Contact Me
+            </a>
+            <a href="Mohammad_Gholampour_Resume_FA.pdf" download class="inline-flex items-center justify-center rounded-xl border border-line bg-white/80 px-6 py-3.5 text-base font-bold text-muted transition hover:-translate-y-0.5 hover:text-brand">
+              Persian PDF
+            </a>
+          </div>
+        </div>
+
+        <aside class="rounded-[2rem] border border-line bg-white p-6 shadow-soft">
+          <p class="text-sm font-black uppercase tracking-[0.24em] text-copper">Key Achievements</p>
+          <div class="mt-6 space-y-5">
+            <div>
+              <p class="text-3xl font-black text-brand">30+</p>
+              <p class="mt-1 text-sm font-semibold text-muted">REST API endpoints for a freight logistics admin panel.</p>
             </div>
-        </div>
-
-        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg border-t border-gray-200">
-            <a href="#about" class="block text-gray-700 hover:bg-gray-100 px-4 py-3 text-sm">About</a>
-            <a href="#skills" class="block text-gray-700 hover:bg-gray-100 px-4 py-3 text-sm">Skills</a>
-            <a href="#experience" class="block text-gray-700 hover:bg-gray-100 px-4 py-3 text-sm">Experience</a>
-            <a href="#projects" class="block text-gray-700 hover:bg-gray-100 px-4 py-3 text-sm">Projects</a>
-            <a href="#contact" class="block text-gray-700 hover:bg-gray-100 px-4 py-3 text-sm">Contact</a>
-        </div>
-    </header>
-
-    <section id="hero" class="hero-section min-h-screen flex items-center justify-center text-center pt-20 sm:pt-16">
-        <div class="container mx-auto px-4 sm:px-6 py-16 sm:py-20">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#333333] mb-4">Mohammad Gholampour Eliato</h1>
-            <p class="text-xl sm:text-2xl md:text-3xl text-[#005C5C] font-semibold mb-8">Backend Developer | Python & Django Specialist</p>
-            <p class="text-base sm:text-lg text-gray-700 max-w-xl sm:max-w-2xl mx-auto mb-10">
-                A passionate and detail-oriented backend developer with experience in building and optimizing APIs using Python and Django. Eager to contribute to challenging projects and continuously expand my technical horizons.
-            </p>
-            <div class="flex flex-col items-center justify-center space-y-4">
-                <a href="#projects" class="accent-primary py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-shadow duration-300 w-full sm:w-auto max-w-xs">View My Work</a>
-                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 w-full max-w-xs sm:max-w-none">
-                    <a href="Mohammad_Gholampour_Resume_EN.pdf" download class="accent-secondary border-2 py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-shadow duration-300 w-full sm:w-auto">Download Resume (EN)</a>
-                    <a href="Mohammad_Gholampour_Resume_FA.pdf" download class="accent-secondary border-2 py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-shadow duration-300 w-full sm:w-auto">Download Resume (FA)</a>
-                </div>
+            <div class="border-t border-line pt-5">
+              <p class="text-3xl font-black text-brand">60%+</p>
+              <p class="mt-1 text-sm font-semibold text-muted">Core APIs built for the Gamify internal e-learning platform.</p>
             </div>
-        </div>
+            <div class="border-t border-line pt-5">
+              <p class="text-3xl font-black text-brand">3</p>
+              <p class="mt-1 text-sm font-semibold text-muted">Live domains: logistics, healthcare, and real estate.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <section id="about" class="py-16 sm:py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 section-title">About Me</h2>
-            <div class="bg-gray-50 p-4 sm:p-6 rounded-lg shadow-md mb-8 sm:mb-10">
-                 <p class="text-base sm:text-lg text-gray-700 text-center max-w-3xl mx-auto">This section offers a glimpse into my journey as a backend developer, my professional aspirations, and the values that drive my work. My goal is to leverage technology to build efficient, scalable, and impactful solutions.</p>
-            </div>
-            <div class="max-w-3xl mx-auto text-gray-700 text-base sm:text-lg space-y-6">
-                <p>
-                    I am a Backend Developer specializing in Python and Django, currently enhancing my practical skills through an engaging role at Dayamooz Company in Mashhad. My journey into backend development was sparked by a fascination with the logic and architecture that powers dynamic web applications. I thrive on transforming complex problems into elegant, functional code.
-                </p>
-                <p>
-                    My experience includes designing and implementing core project APIs, ensuring effective collaboration with frontend teams, and employing tools like Git, GitLab, and Jira for streamlined project management and version control. I am also proficient in system performance testing and API documentation using tools like Swagger/OpenAPI.
-                </p>
-                <p>
-                    I am driven by a constant desire to learn and grow. I am particularly excited by challenging projects that push the boundaries of my knowledge and allow me to explore new technologies and methodologies. My aspiration is to contribute to innovative projects, particularly in areas like high-scalability systems or data-intensive applications, and to become a highly skilled developer known for crafting robust and reliable backend solutions.
-                </p>
-                 <p>
-                    Collaboration is key to my work ethic. During my time at Dayamooz, I've actively participated in daily stand-ups and utilized Jira for task tracking, which fostered seamless API integration and alignment with user interface requirements. I believe clear communication and a team-oriented approach are fundamental to successful project outcomes.
-                </p>
-            </div>
+    <section id="about" class="border-y border-line bg-white px-4 py-16 sm:px-6 sm:py-20">
+      <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.35fr_0.65fr]">
+        <div>
+          <p class="text-sm font-black uppercase tracking-[0.24em] text-copper">Profile</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-ink sm:text-4xl">Professional Summary</h2>
         </div>
+        <div class="rounded-2xl border border-line bg-paper p-6 sm:p-8">
+          <p class="text-base leading-8 text-muted sm:text-lg">
+            Skilled in RESTful API design, geospatial data processing with PostGIS, query optimization, and cross-functional collaboration with frontend teams. My work at Dayamooz spans production systems in logistics, healthcare, and a Dubai-based real estate CRM.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section id="skills" class="py-16 sm:py-20 bg-gray-100">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 section-title">My Expertise</h2>
-            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-8 sm:mb-10">
-                <p class="text-base sm:text-lg text-gray-700 text-center max-w-3xl mx-auto">Here's an overview of my technical skill set. I'm continuously working to expand this toolkit and apply these technologies to solve real-world problems effectively. While this table lists my primary skills, I'm always open to discussing specific proficiency levels and experiences during an interview.</p>
-            </div>
-            <div class="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-xl overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                            <th scope="col" class="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Skills</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-gray-900 text-sm sm:text-base">Programming Languages</td>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-gray-700 text-sm sm:text-base">
-                                <span class="skill-icon text-xl sm:text-2xl">🐍</span>Python
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-gray-900 text-sm sm:text-base">Frameworks & Libraries</td>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-gray-700 text-sm sm:text-base">
-                                <span class="skill-icon text-xl sm:text-2xl">🎸</span>Django, <span class="skill-icon text-xl sm:text-2xl">🧩</span>Django REST Framework (DRF)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-gray-900 text-sm sm:text-base">Databases</td>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-gray-700 text-sm sm:text-base">
-                                <span class="skill-icon text-xl sm:text-2xl">🐘</span>PostgreSQL, <span class="skill-icon text-xl sm:text-2xl">🐬</span>MySQL, <span class="skill-icon text-xl sm:text-2xl">🗺️</span>PostGIS
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-gray-900 text-sm sm:text-base">Frontend Technologies</td>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-gray-700 text-sm sm:text-base">
-                                <span class="skill-icon text-xl sm:text-2xl">📄</span>HTML, <span class="skill-icon text-xl sm:text-2xl">🎨</span>CSS (Foundational/Working Knowledge)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-gray-900 text-sm sm:text-base">Developer Tools & Platforms</td>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-gray-700 text-sm sm:text-base">
-                                <span class="skill-icon text-xl sm:text-2xl">🛠️</span>Git, <span class="skill-icon text-xl sm:text-2xl">🦊</span>GitLab, <span class="skill-icon text-xl sm:text-2xl">📋</span>Jira, <span class="skill-icon text-xl sm:text-2xl">📖</span>Swagger/OpenAPI
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-gray-900 text-sm sm:text-base">Operating Systems</td>
-                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-gray-700 text-sm sm:text-base">
-                                <span class="skill-icon text-xl sm:text-2xl">🐧</span>Ubuntu
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <section id="skills" class="px-4 py-16 sm:px-6 sm:py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="mx-auto max-w-3xl text-center">
+          <p class="text-sm font-black uppercase tracking-[0.24em] text-copper">Core Skills</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-ink sm:text-4xl">Backend toolkit for production APIs</h2>
+          <p class="mt-4 text-muted">Mapped directly from the English résumé PDF, grouped for quick recruiter scanning.</p>
         </div>
+
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="rounded-2xl border border-line bg-white p-5 shadow-sm">
+            <h3 class="text-lg font-black text-brand">Languages</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">Python (Advanced)</span>
+              <span class="chip">Java (Basic)</span>
+            </div>
+          </article>
+          <article class="rounded-2xl border border-line bg-white p-5 shadow-sm">
+            <h3 class="text-lg font-black text-brand">Frameworks</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">Django</span>
+              <span class="chip">Django REST Framework</span>
+              <span class="chip">FastAPI</span>
+              <span class="chip">Celery</span>
+            </div>
+          </article>
+          <article class="rounded-2xl border border-line bg-white p-5 shadow-sm">
+            <h3 class="text-lg font-black text-brand">Databases</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">PostGIS</span>
+              <span class="chip">MySQL</span>
+              <span class="chip">Redis</span>
+            </div>
+          </article>
+          <article class="rounded-2xl border border-line bg-white p-5 shadow-sm">
+            <h3 class="text-lg font-black text-brand">Concepts</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">RESTful API Design</span>
+              <span class="chip">Clean Code</span>
+              <span class="chip">JWT / CSRF / XSS</span>
+              <span class="chip">Query Optimization</span>
+              <span class="chip">Microservices</span>
+            </div>
+          </article>
+          <article class="rounded-2xl border border-line bg-white p-5 shadow-sm">
+            <h3 class="text-lg font-black text-brand">Tools</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">Docker</span>
+              <span class="chip">Docker Compose</span>
+              <span class="chip">Git</span>
+              <span class="chip">GitLab</span>
+              <span class="chip">GitHub</span>
+              <span class="chip">Jira</span>
+            </div>
+          </article>
+          <article class="rounded-2xl border border-line bg-white p-5 shadow-sm">
+            <h3 class="text-lg font-black text-brand">Docs &amp; OS</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">OpenAPI / Swagger</span>
+              <span class="chip">Linux</span>
+              <span class="chip">CLI</span>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section id="experience" class="py-16 sm:py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 section-title">Professional Journey</h2>
-             <div class="bg-gray-50 p-4 sm:p-6 rounded-lg shadow-md mb-8 sm:mb-10">
-                <p class="text-base sm:text-lg text-gray-700 text-center max-w-3xl mx-auto">This section details my professional experience and educational background, providing context to my skill development and growth as a developer.</p>
-            </div>
-            <div class="max-w-3xl mx-auto">
-                <div class="mb-12">
-                    <h3 class="text-xl sm:text-2xl font-semibold text-[#007A7A] mb-2">Backend Developer</h3>
-                    <p class="text-base sm:text-lg text-gray-600 mb-1">Dayamooz Company, Mashhad</p>
-                    <p class="text-sm sm:text-md text-gray-500 mb-4">September 2024 – Present</p>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-base sm:text-lg">
-                        <li>Engineered and implemented optimized APIs using Django, enhancing system efficiency and reducing response times.</li>
-                        <li>Spearheaded the development of new features and iteratively updated existing APIs to address evolving project requirements.</li>
-                        <li>Authored comprehensive API documentation with Swagger/OpenAPI, fostering improved collaboration and understanding between backend and frontend teams.</li>
-                        <li>Conducted continuous testing and debugging of APIs to ensure flawless performance and seamless coordination with the user interface.</li>
-                        <li>Actively participated in daily team coordination through sprint meetings and managed tasks effectively using Jira for transparent project progress tracking.</li>
-                        <li>Managed version control with Git and deployed code via GitLab, including successful deployments to staging and production environments.</li>
-                    </ul>
-                </div>
+    <section id="experience" class="border-y border-line bg-white px-4 py-16 sm:px-6 sm:py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="max-w-3xl">
+          <p class="text-sm font-black uppercase tracking-[0.24em] text-copper">Professional Experience</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-ink sm:text-4xl">Four production roles at Dayamooz</h2>
+          <p class="mt-4 text-muted">Most recent first, with stack chips and role-specific contributions from the PDF.</p>
+        </div>
 
+        <div class="mt-12 border-l-2 border-line pl-7 md:pl-10">
+          <article class="timeline-item relative pb-12">
+            <div class="rounded-2xl border border-line bg-paper p-6 shadow-sm">
+              <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                 <div>
-                    <h3 class="text-xl sm:text-2xl font-semibold text-[#007A7A] mb-2">Education</h3>
-                    <p class="text-base sm:text-lg text-gray-700 font-medium">Bachelor of Computer Engineering (Software Engineering)</p>
-                    <p class="text-base sm:text-lg text-gray-600 mb-1">Khavaran Institute of Higher Education, Mashhad</p>
-                    <p class="text-sm sm:text-md text-gray-500">2021 – Present</p>
+                  <h3 class="text-xl font-black text-ink">Backend Developer — Lunaya CRM</h3>
+                  <p class="mt-1 font-bold text-brand">Dayamooz | Mashhad, Iran (On-site)</p>
                 </div>
+                <p class="shrink-0 rounded-full bg-white px-3 py-1.5 text-sm font-black text-copper">Oct 2025 – Present • 7 months</p>
+              </div>
+              <ul class="mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
+                <li>Designed and implemented the majority of API routes for a real estate CRM managing property listings, unit reservations, and commission workflows in Dubai.</li>
+                <li>Built end-to-end modules covering listing management, booking lifecycle, and commission calculation using FastAPI.</li>
+                <li>Collaborated with a senior engineer on system architecture decisions and initial data import pipeline.</li>
+                <li>Delivered a fully integrated CRM covering authentication, listings, reservations, and reporting.</li>
+              </ul>
+              <div class="mt-5 flex flex-wrap gap-2" aria-label="Stack">
+                <span class="chip stack-chip">FastAPI</span>
+                <span class="chip stack-chip">Python</span>
+                <span class="chip stack-chip">PostgreSQL</span>
+              </div>
             </div>
+          </article>
+
+          <article class="timeline-item relative pb-12">
+            <div class="rounded-2xl border border-line bg-paper p-6 shadow-sm">
+              <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <h3 class="text-xl font-black text-ink">Backend Developer — Medlift</h3>
+                  <p class="mt-1 font-bold text-brand">Dayamooz | Mashhad, Iran (On-site)</p>
+                </div>
+                <p class="shrink-0 rounded-full bg-white px-3 py-1.5 text-sm font-black text-copper">Jul 2025 – Oct 2025 • 4 months</p>
+              </div>
+              <ul class="mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
+                <li>Developed REST API endpoints for a healthcare platform using FastAPI in an Agile environment.</li>
+                <li>Designed endpoints for medical data management and clinical workflow automation.</li>
+              </ul>
+              <div class="mt-5 flex flex-wrap gap-2" aria-label="Stack">
+                <span class="chip stack-chip">FastAPI</span>
+                <span class="chip stack-chip">Python</span>
+                <span class="chip stack-chip">PostgreSQL</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item relative pb-12">
+            <div class="rounded-2xl border border-line bg-paper p-6 shadow-sm">
+              <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <h3 class="text-xl font-black text-ink">Backend Developer — Truck (Load Truck Partial)</h3>
+                  <p class="mt-1 font-bold text-brand">Dayamooz | Mashhad, Iran (On-site)</p>
+                </div>
+                <p class="shrink-0 rounded-full bg-white px-3 py-1.5 text-sm font-black text-copper">Nov 2024 – Jul 2025 • 9 months</p>
+              </div>
+              <ul class="mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
+                <li>Designed and implemented 30+ REST API endpoints for the admin panel of a freight logistics system using Django and DRF.</li>
+                <li>Implemented geospatial data processing with PostGIS and PostgreSQL to manage routes, locations, and freight operations.</li>
+                <li>Optimized database queries and integrated new business logic to improve API performance and reliability.</li>
+                <li>Participated in Agile ceremonies: daily stand-ups, sprint tracking in Jira, and deployments via GitLab CI/CD pipelines.</li>
+                <li>Collaborated directly with the frontend team to ensure seamless API integration.</li>
+              </ul>
+              <div class="mt-5 flex flex-wrap gap-2" aria-label="Stack">
+                <span class="chip stack-chip">Django</span>
+                <span class="chip stack-chip">DRF</span>
+                <span class="chip stack-chip">PostgreSQL</span>
+                <span class="chip stack-chip">PostGIS</span>
+                <span class="chip stack-chip">GitLab</span>
+                <span class="chip stack-chip">Jira</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item relative">
+            <div class="rounded-2xl border border-line bg-paper p-6 shadow-sm">
+              <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <h3 class="text-xl font-black text-ink">Backend Developer Intern — Gamify</h3>
+                  <p class="mt-1 font-bold text-brand">Dayamooz | Mashhad, Iran (On-site)</p>
+                </div>
+                <p class="shrink-0 rounded-full bg-white px-3 py-1.5 text-sm font-black text-copper">Sep 2024 – Nov 2024 • 3 months</p>
+              </div>
+              <ul class="mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
+                <li>Contributed to 60%+ of the core API endpoints for the internal Gamify e-learning platform using Django and DRF.</li>
+                <li>Designed MySQL database schema for user management and educational content.</li>
+                <li>Documented all APIs with OpenAPI/Swagger; produced clean, testable RESTful code.</li>
+              </ul>
+              <div class="mt-5 flex flex-wrap gap-2" aria-label="Stack">
+                <span class="chip stack-chip">Django</span>
+                <span class="chip stack-chip">DRF</span>
+                <span class="chip stack-chip">MySQL</span>
+                <span class="chip stack-chip">Swagger</span>
+                <span class="chip stack-chip">Git</span>
+              </div>
+            </div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <section id="projects" class="py-16 sm:py-20 bg-gray-100">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 section-title">My Projects</h2>
-            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-8 sm:mb-10">
-                <p class="text-base sm:text-lg text-gray-700 text-center max-w-3xl mx-auto">Here are some of the key projects I've worked on, demonstrating my ability to apply technical skills to build functional and efficient solutions. Each project presented a unique set of challenges and learning opportunities.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
-                <div class="project-card bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-                    <h3 class="text-xl sm:text-2xl font-semibold text-[#007A7A] mb-3">Danoosh</h3>
-                    <p class="text-xs sm:text-sm text-gray-500 mb-1">Role: Backend Intern @ Dayamooz</p>
-                    <p class="text-xs sm:text-sm text-gray-500 mb-4">Timeline: Target Completion September 2024</p>
-                    <p class="text-gray-700 mb-4 text-sm sm:text-base">
-                        As a Backend Intern on the Danoosh project, I was tasked with developing a significant portion of the site's core API infrastructure for a training project.
-                    </p>
-                    <h4 class="font-semibold text-gray-800 mb-2 text-base sm:text-lg">Key Contributions:</h4>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4 text-sm sm:text-base">
-                        <li>Designed and implemented 60% of the APIs using Django REST Framework, enabling user management and content delivery.</li>
-                        <li>Architected optimized data structures in MySQL.</li>
-                        <li>Ensured robust API performance through rigorous testing and debugging.</li>
-                        <li>Developed comprehensive API documentation via Swagger, facilitating seamless frontend collaboration.</li>
-                    </ul>
-                    <p class="text-gray-700 text-sm sm:text-base"><strong class="font-semibold">Technologies:</strong> Python, Django, DRF, MySQL, Swagger, Git</p>
-                </div>
+    <section id="education" class="px-4 py-16 sm:px-6 sm:py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-5 lg:grid-cols-3">
+          <article class="rounded-2xl border border-line bg-white p-6 shadow-sm">
+            <p class="text-sm font-black uppercase tracking-[0.2em] text-copper">Education</p>
+            <h2 class="mt-4 text-2xl font-black text-ink">B.Sc. Computer Engineering</h2>
+            <p class="mt-3 font-bold text-brand">Khavaran University | Mashhad, Iran</p>
+            <p class="mt-2 text-muted">2021 – 2025</p>
+          </article>
 
-                <div class="project-card bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-                    <h3 class="text-xl sm:text-2xl font-semibold text-[#007A7A] mb-3">Truck Load (Tarak)</h3>
-                    <p class="text-xs sm:text-sm text-gray-500 mb-1">Role: Backend Developer @ Dayamooz</p>
-                    <p class="text-xs sm:text-sm text-gray-500 mb-4">Timeline: Target Completion January 2025</p>
-                    <p class="text-gray-700 mb-4 text-sm sm:text-base">
-                        In my role as Backend Developer for the Truck Load project, I took full ownership of designing and implementing all APIs for the critical dashboard section.
-                    </p>
-                    <h4 class="font-semibold text-gray-800 mb-2 text-base sm:text-lg">Key Contributions:</h4>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4 text-sm sm:text-base">
-                        <li>Leveraged PostgreSQL and PostGIS to manage and query complex geographical data for the dashboard.</li>
-                        <li>Developed new system features by updating and optimizing existing APIs.</li>
-                        <li>Analyzed system requirements to propose technical solutions for enhanced dashboard performance.</li>
-                        <li>Collaborated closely with the frontend team to ensure seamless integration.</li>
-                    </ul>
-                    <p class="text-gray-700 text-sm sm:text-base"><strong class="font-semibold">Technologies:</strong> Python, Django, DRF, PostgreSQL, PostGIS, Git, GitLab</p>
-                </div>
-            </div>
+          <article class="rounded-2xl border border-line bg-white p-6 shadow-sm lg:col-span-2">
+            <p class="text-sm font-black uppercase tracking-[0.2em] text-copper">Training &amp; Courses</p>
+            <h2 class="mt-4 text-2xl font-black text-ink">Code with Mosh (2024)</h2>
+            <p class="mt-3 leading-8 text-muted">
+              Project-based intensive: Django &amp; REST Framework, SQL &amp; Database Design, Docker &amp; DevOps, Java, Design Patterns, Data Structures &amp; Algorithms
+            </p>
+          </article>
+
+          <article class="rounded-2xl border border-line bg-white p-6 shadow-sm lg:col-span-3">
+            <p class="text-sm font-black uppercase tracking-[0.2em] text-copper">Languages</p>
+            <p class="mt-4 text-lg font-bold text-ink">
+              Persian — Native <span class="mx-2 text-line">|</span> English — Professional (technical docs &amp; work communication; ready to improve for international teams)
+            </p>
+          </article>
         </div>
+      </div>
     </section>
 
-    <section id="contact" class="py-16 sm:py-20 bg-gradient-to-r from-[#007A7A] to-[#005C5C] text-white">
-        <div class="container mx-auto px-4 sm:px-6 text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Get In Touch</h2>
-             <div class="bg-white/10 p-4 sm:p-6 rounded-lg shadow-md mb-8 sm:mb-10 backdrop-blur-sm">
-                <p class="text-base sm:text-lg text-gray-200 max-w-3xl mx-auto">I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great. Feel free to reach out!</p>
-            </div>
-            <div class="max-w-md mx-auto bg-white/20 p-6 sm:p-8 rounded-xl shadow-2xl backdrop-blur-md">
-                <p class="text-lg sm:text-xl mb-6">
-                    <a href="mailto:m.gholampour2002@gmail.com" class="hover:text-yellow-300 transition-colors block break-all">📧 m.gholampour2002@gmail.com</a>
-                </p>
-                <p class="text-lg sm:text-xl mb-8">
-                    <a href="tel:+989930142744" class="hover:text-yellow-300 transition-colors block">📞 (98) 9930142744</a>
-                </p>
-                <div class="flex justify-center space-x-6 mb-8">
-                    <a href="http://www.linkedin.com/in/mohammadgholampour" target="_blank" rel="noopener noreferrer" class="social-icon text-2xl sm:text-3xl hover:text-yellow-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-linkedin h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 16 16">
-                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                        </svg>
-                    </a>
-                    <a href="https://github.com/mohammadgholampour" target="_blank" rel="noopener noreferrer" class="social-icon text-2xl sm:text-3xl hover:text-yellow-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-github h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 16 16">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.instagram.com/mohammad_gholampour" target="_blank" rel="noopener noreferrer" class="social-icon text-2xl sm:text-3xl hover:text-yellow-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-instagram h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 16 16">
-                            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.917 3.917 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.916 3.916 0 0 0-.923-1.417A3.916 3.916 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.231 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.275-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.958 2.884a1.498 1.498 0 1 0 2.995.002 1.498 1.498 0 0 0-2.995-.002zM8 4.868A3.133 3.133 0 1 0 8 11.133a3.133 3.133 0 0 0 0-6.265zm0 1.142a1.99 1.99 0 1 1 0 3.98 1.99 1.99 0 0 1 0-3.98z"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
-                    <a href="Mohammad_Gholampour_Resume_EN.pdf" download class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
-                        Download Resume (EN)
-                    </a>
-                    <a href="Mohammad_Gholampour_Resume_FA.pdf" download class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
-                        Download Resume (FA)
-                    </a>
-                </div>
-            </div>
+    <section id="contact" class="bg-brand px-4 py-16 text-white sm:px-6 sm:py-20">
+      <div class="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+        <div>
+          <p class="text-sm font-black uppercase tracking-[0.24em] text-white/70">Contact</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Let’s talk about backend roles.</h2>
+          <p class="mt-4 leading-8 text-white/78">
+            Best fit: Python/Django/FastAPI backend roles, API-heavy products, and remote or international teams.
+          </p>
         </div>
+
+        <div class="rounded-2xl border border-white/15 bg-white/10 p-6 shadow-soft backdrop-blur">
+          <div class="grid gap-3">
+            <a href="mailto:m.gholampour2002@gmail.com" class="rounded-xl bg-white px-4 py-3 font-bold text-brand transition hover:bg-paper">m.gholampour2002@gmail.com</a>
+            <a href="tel:+989930142744" class="rounded-xl bg-white px-4 py-3 font-bold text-brand transition hover:bg-paper">+98 993 014 2744</a>
+            <a href="https://www.linkedin.com/in/mohammadgholampour" target="_blank" rel="noopener noreferrer" class="rounded-xl bg-white px-4 py-3 font-bold text-brand transition hover:bg-paper">linkedin.com/in/mohammadgholampour</a>
+          </div>
+          <div class="mt-5 grid gap-3 sm:grid-cols-2">
+            <a href="Mohammad_Gholampour_Resume_EN.pdf" download class="rounded-xl bg-[#f2c14e] px-5 py-3 text-center font-black text-ink transition hover:bg-[#ffd469]">Download Resume (EN)</a>
+            <a href="Mohammad_Gholampour_Resume_FA.pdf" download class="rounded-xl border border-white/25 px-5 py-3 text-center font-black text-white transition hover:bg-white/10">Download Resume (FA)</a>
+          </div>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <footer class="bg-[#333333] text-gray-300 text-center py-8">
-        <div class="container mx-auto px-4 sm:px-6">
-            <p class="text-sm">&copy; <span id="currentYear"></span> Mohammad Gholampour Eliato. All Rights Reserved.</p>
-            <p class="text-xs sm:text-sm mt-1">Designed with <span class="text-red-500">&hearts;</span> and Tailwind CSS</p>
-        </div>
-    </footer>
+  <footer class="bg-ink px-4 py-8 text-center text-sm text-white/65 sm:px-6">
+    <p>&copy; <span id="currentYear"></span> Mohammad Gholampour. All rights reserved.</p>
+  </footer>
 
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+  <script>
+    const year = document.getElementById("currentYear");
+    const header = document.getElementById("header");
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const navLinks = document.querySelectorAll(".nav-item");
+    const sections = document.querySelectorAll("main section[id]");
 
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+    year.textContent = new Date().getFullYear();
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    mobileMenuButton.addEventListener("click", () => {
+      const isHidden = mobileMenu.classList.toggle("hidden");
+      mobileMenuButton.setAttribute("aria-expanded", String(!isHidden));
+    });
 
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        event.preventDefault();
+        mobileMenu.classList.add("hidden");
+        mobileMenuButton.setAttribute("aria-expanded", "false");
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
 
-        // Smooth scrolling for all navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // Consider header height for accurate scroll position
-                    const headerHeight = document.getElementById('header').offsetHeight;
-                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - headerHeight;
-                    
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+    let ticking = false;
 
-        // Active navigation link highlighting (Desktop only for simplicity, can be extended)
-        const sections = document.querySelectorAll('section');
-        const desktopNavLinks = document.querySelectorAll('nav.hidden.md\\:flex a.nav-item'); // Target only desktop nav links
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const headerHeight = document.getElementById('header').offsetHeight;
+    const setActiveNav = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 8);
+      let active = "hero";
+      const offset = header.offsetHeight + 80;
+      sections.forEach((section) => {
+        if (window.scrollY >= section.offsetTop - offset) active = section.id;
+      });
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === `#${active}`;
+        link.classList.toggle("text-brand", isActive);
+        link.classList.toggle("bg-brand/5", isActive);
+      });
+    };
 
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - headerHeight - 50)) { // Adjusted offset for better accuracy
-                    current = section.getAttribute('id');
-                }
-            });
-
-            desktopNavLinks.forEach(a => {
-                a.classList.remove('active');
-                if (a.getAttribute('href').substring(1) === current) {
-                    a.classList.add('active');
-                }
-            });
-            // Special case for hero section when at top
-            if (pageYOffset < (sections[0].offsetTop - headerHeight -50) ) {
-                 desktopNavLinks.forEach(a => a.classList.remove('active'));
-            }
-        });
-    </script>
-
+    setActiveNav();
+    window.addEventListener("scroll", () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        setActiveNav();
+        ticking = false;
+      });
+    }, { passive: true });
+  </script>
 </body>
 </html>

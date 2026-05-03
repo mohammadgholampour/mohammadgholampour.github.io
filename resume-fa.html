@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<!--
+  رزومه فارسی — ویرایش محتوا: سکشن‌ها و لیست‌ها را عوض کنید.
+  خروجی PDF: scripts/render_resume_pdf.py با داکر lunaya-api
+-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>رزومهٔ محمد غلامپور</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 9mm 11mm 10mm;
+    }
+
+    :root {
+      --ink: #182433;
+      --muted: #526273;
+      --soft: #6f7d8b;
+      --accent: #1f3a5f;
+      --accent-2: #8a5d2f;
+      --accent-soft: #edf2f7;
+      --line: #d7e0ea;
+      --paper: #ffffff;
+      --screen: #eef3f7;
+    }
+
+    @font-face {
+      font-family: "Noto Sans Arabic";
+      src: url("fonts/NotoSansArabic-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Noto Sans Arabic";
+      src: url("fonts/NotoSansArabic-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Noto Sans";
+      src: url("fonts/NotoSans-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Noto Sans";
+      src: url("fonts/NotoSans-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--screen);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(circle at top right, #ffffff 0, var(--screen) 38rem);
+      font-family: "Noto Sans Arabic", "Noto Sans", sans-serif;
+      font-size: 10.15pt;
+      line-height: 1.48;
+      direction: rtl;
+    }
+
+    .resume {
+      width: min(210mm, 100%);
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .sheet {
+      background: var(--paper);
+      border: 1px solid #dfe6ee;
+      box-shadow: 0 18px 60px rgba(24, 36, 51, 0.12);
+      padding: 12mm 13mm;
+    }
+
+    header.doc-header {
+      margin: 0 0 0.92rem;
+      padding: 0 0 0.78rem;
+      border-bottom: 2px solid var(--accent);
+      break-inside: avoid;
+    }
+
+    .identity {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.42rem;
+    }
+
+    h1.name {
+      margin: 0;
+      color: var(--accent);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.08;
+      text-align: right;
+    }
+
+    .role-title {
+      color: var(--accent-2);
+      font-size: 0.98rem;
+      font-weight: 700;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .tagline {
+      margin: 0 0 0.56rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: right;
+    }
+
+    .contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.24rem 0.7rem;
+      justify-content: flex-start;
+      direction: ltr;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .contacts a,
+    .contacts span {
+      direction: ltr;
+      unicode-bidi: isolate;
+      font-family: "Noto Sans", sans-serif;
+    }
+
+    .contacts a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .sep {
+      color: #a6b2bf;
+      user-select: none;
+    }
+
+    main {
+      display: block;
+    }
+
+    section.page-section {
+      margin: 0 0 0.64rem;
+      padding: 0 0 0.64rem;
+      border-bottom: 1px solid var(--line);
+      break-inside: auto;
+    }
+
+    section.page-section:last-of-type {
+      border-bottom: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    section.page-section > h2 {
+      display: table;
+      margin: 0 0 0.34rem;
+      padding: 0 0 0.14rem;
+      border-bottom: 2px solid var(--accent-2);
+      color: var(--accent);
+      font-size: 0.96rem;
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: right;
+      break-after: avoid;
+    }
+
+    p.lede {
+      margin: 0;
+      color: var(--ink);
+      font-size: 0.92rem;
+      line-height: 1.54;
+      text-align: justify;
+      text-align-last: right;
+    }
+
+    ul.achievements,
+    ul.bullets {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: right;
+    }
+
+    ul.achievements li,
+    ul.bullets li {
+      position: relative;
+      margin: 0 0 0.26rem;
+      padding-right: 0.86rem;
+    }
+
+    ul.achievements li:last-child,
+    ul.bullets li:last-child {
+      margin-bottom: 0;
+    }
+
+    ul.achievements li::before,
+    ul.bullets li::before {
+      content: "";
+      position: absolute;
+      top: 0.68em;
+      right: 0.08rem;
+      width: 0.28rem;
+      height: 0.28rem;
+      border-radius: 50%;
+      background: var(--accent-2);
+    }
+
+    ul.achievements {
+      font-size: 0.9rem;
+      line-height: 1.46;
+    }
+
+    dl.skills-grid {
+      margin: 0;
+      border-top: 1px solid var(--accent-soft);
+    }
+
+    dl.skills-grid div {
+      display: flex;
+      gap: 0.7rem;
+      align-items: baseline;
+      padding: 0.25rem 0;
+      border-bottom: 1px solid var(--accent-soft);
+      break-inside: avoid;
+    }
+
+    dl.skills-grid div:last-child {
+      border-bottom: 0;
+    }
+
+    dl.skills-grid dt {
+      flex: 0 0 7.3rem;
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    dl.skills-grid dd {
+      flex: 1 1 auto;
+      margin: 0;
+      color: var(--ink);
+      font-size: 0.84rem;
+      line-height: 1.42;
+      text-align: right;
+    }
+
+    article.role {
+      margin: 0 0 0.54rem;
+      padding: 0 0 0.56rem;
+      border-bottom: 1px dashed var(--line);
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    article.role:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .role-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.18rem 0.75rem;
+      margin-bottom: 0.2rem;
+      break-after: avoid;
+    }
+
+    .role-head h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 0.96rem;
+      font-weight: 700;
+      line-height: 1.34;
+      text-align: right;
+    }
+
+    .company {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .role-date {
+      margin: 0 0 0.28rem;
+      color: var(--soft);
+      font-size: 0.79rem;
+      line-height: 1.34;
+      text-align: right;
+    }
+
+    ul.bullets {
+      font-size: 0.88rem;
+      line-height: 1.42;
+    }
+
+    p.stack-line {
+      margin: 0.3rem 0 0;
+      color: var(--soft);
+      font-size: 0.75rem;
+      line-height: 1.34;
+      text-align: right;
+    }
+
+    p.stack-line .label {
+      color: var(--accent);
+      font-weight: 700;
+      margin-left: 0.2rem;
+    }
+
+    .edu-block .line {
+      margin: 0.08rem 0;
+      font-size: 0.9rem;
+      line-height: 1.42;
+    }
+
+    .edu-block strong {
+      color: var(--ink);
+    }
+
+    footer.page-foot {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    .en,
+    span[lang="en"],
+    code {
+      direction: ltr;
+      unicode-bidi: isolate;
+      font-family: "Noto Sans", sans-serif;
+    }
+
+    .en {
+      display: inline;
+      letter-spacing: 0;
+    }
+
+    a[href^="mailto:"],
+    a[href^="http"] {
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 720px) {
+      .resume {
+        padding: 0;
+      }
+      .sheet {
+        border: 0;
+        box-shadow: none;
+        padding: 18px;
+      }
+      .identity,
+      .role-head {
+        display: block;
+      }
+      .role-title {
+        display: block;
+        margin-top: 0.25rem;
+      }
+      dl.skills-grid div {
+        display: block;
+      }
+      dl.skills-grid dt {
+        margin-bottom: 0.1rem;
+      }
+    }
+
+    @media print {
+      html,
+      body {
+        background: #fff;
+      }
+      body {
+        font-size: 9.25pt;
+        line-height: 1.38;
+      }
+      .resume,
+      .sheet {
+        width: auto;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+      }
+      header.doc-header {
+        margin-bottom: 0.7rem;
+        padding-bottom: 0.54rem;
+      }
+      h1.name {
+        font-size: 19.5pt;
+      }
+      .role-title {
+        font-size: 9.2pt;
+      }
+      .tagline {
+        margin-bottom: 0.36rem;
+      }
+      .contacts {
+        gap: 0.14rem 0.55rem;
+        font-size: 7.8pt;
+      }
+      section.page-section {
+        margin-bottom: 0.45rem;
+        padding-bottom: 0.45rem;
+      }
+      section.page-section > h2 {
+        margin-bottom: 0.22rem;
+        font-size: 9pt;
+      }
+      p.lede,
+      ul.achievements,
+      ul.bullets {
+        font-size: 8.35pt;
+        line-height: 1.36;
+      }
+      dl.skills-grid div {
+        padding: 0.16rem 0;
+      }
+      dl.skills-grid dt,
+      dl.skills-grid dd {
+        font-size: 7.9pt;
+        line-height: 1.3;
+      }
+      dl.skills-grid dt {
+        flex-basis: 6.5rem;
+      }
+      article.role {
+        margin-bottom: 0.38rem;
+        padding-bottom: 0.4rem;
+      }
+      .role-head {
+        margin-bottom: 0.12rem;
+      }
+      .role-head h3 {
+        font-size: 8.95pt;
+      }
+      .company,
+      .role-date {
+        font-size: 7.5pt;
+      }
+      .role-date {
+        margin-bottom: 0.18rem;
+      }
+      p.stack-line {
+        margin-top: 0.18rem;
+        font-size: 7pt;
+      }
+      .edu-block .line {
+        font-size: 8.2pt;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="resume">
+    <div class="sheet">
+      <header class="doc-header">
+        <div class="identity">
+          <h1 class="name">محمد غلامپور</h1>
+          <div class="role-title">توسعه‌دهنده بک‌اند</div>
+        </div>
+        <p class="tagline">
+          پشتهٔ اصلی:
+          <span class="en" lang="en" dir="ltr">Python · Django · FastAPI · PostgreSQL</span>
+        </p>
+        <div class="contacts">
+          <a href="tel:+989930142744">(+98) 9930142744</a>
+          <span class="sep" aria-hidden="true">|</span>
+          <a href="mailto:m.gholampour2002@gmail.com">m.gholampour2002@gmail.com</a>
+          <span class="sep" aria-hidden="true">|</span>
+          <a href="https://www.linkedin.com/in/mohammadgholampour" target="_blank" rel="noopener">linkedin.com/in/mohammadgholampour</a>
+        </div>
+      </header>
+
+      <main>
+
+    <section class="page-section" id="summary">
+      <h2>خلاصه حرفه‌ای</h2>
+      <p class="lede">
+        توسعه‌دهنده بک‌اند با بیش از یک سال تجربهٔ عملی در <span class="en" lang="en" dir="ltr">Dayamooz</span>، در سه پروژهٔ تولیدی در حوزه‌های لجستیک، پزشکی و املاک بین‌المللی. با
+        <span class="en" lang="en" dir="ltr">Django</span> و <span class="en" lang="en" dir="ltr">FastAPI</span> به‌صورت حرفه‌ای کار کرده‌ام و در پروژه‌هایی با پیچیدگی تجاری بالا — از مدیریت بار با <span class="en" lang="en" dir="ltr">PostGIS</span> تا سیستم رزرو و کمیسیون واحدهای ملکی در دبی — مسئولیت اصلی توسعهٔ <span class="en" lang="en" dir="ltr">API</span> را داشته‌ام.
+      </p>
+    </section>
+
+    <section class="page-section" id="highlights">
+      <h2>دستاوردهای کلیدی</h2>
+      <ul class="achievements">
+        <li>طراحی و استقرار بیش از ۳۰ <span class="en" lang="en" dir="ltr">endpoint</span> تولیدی برای پنل مدیریتی سامانهٔ لجستیکی (پروژه <span class="en" lang="en" dir="ltr">Truck</span>) — توسعه‌دهندهٔ اصلی بک‌اند</li>
+        <li>توسعهٔ ۶۰٪+ از <span class="en" lang="en" dir="ltr">API</span>های اصلی پلتفرم آموزشی <span class="en" lang="en" dir="ltr">Gamify</span> در دورهٔ کارآموزی</li>
+        <li>پیاده‌سازی لایهٔ کامل <span class="en" lang="en" dir="ltr">API</span> یک <span class="en" lang="en" dir="ltr">CRM</span> برای پلتفرم املاک <span class="en" lang="en" dir="ltr">Lunaya</span> در دبی (لیستینگ، رزرو، کمیسیون)</li>
+        <li>پیاده‌سازی پردازش داده‌های مکانی با <span class="en" lang="en" dir="ltr">PostGIS</span> برای مدیریت مسیر و بار در سامانهٔ لجستیکی</li>
+        <li>کار در ۳ حوزهٔ متفاوت (لجستیک، پزشکی، املاک) با دو فریم‌ورک <span class="en" lang="en" dir="ltr">Django</span> و <span class="en" lang="en" dir="ltr">FastAPI</span></li>
+      </ul>
+    </section>
+
+    <section class="page-section" id="skills">
+      <h2>مهارت‌های کلیدی</h2>
+      <dl class="skills-grid">
+        <div>
+          <dt>زبان‌ها</dt>
+          <dd><span class="en" lang="en" dir="ltr">Python</span> (پیشرفته)، <span class="en" lang="en" dir="ltr">Java</span> (مقدماتی)</dd>
+        </div>
+        <div>
+          <dt>فریم‌ورک</dt>
+          <dd><span class="en" lang="en" dir="ltr">Django, Django REST Framework, FastAPI, Celery</span></dd>
+        </div>
+        <div>
+          <dt>پایگاه‌داده</dt>
+          <dd><span class="en" lang="en" dir="ltr">PostgreSQL, PostGIS, MySQL, Redis</span></dd>
+        </div>
+        <div>
+          <dt>تخصص</dt>
+          <dd><span class="en" lang="en" dir="ltr">RESTful API, Clean Code, JWT/CSRF/XSS, Query Optimization, Microservices</span></dd>
+        </div>
+        <div>
+          <dt>ابزارها</dt>
+          <dd><span class="en" lang="en" dir="ltr">Docker, Docker Compose, Git, GitLab, GitHub, Jira</span></dd>
+        </div>
+        <div>
+          <dt>مستندات</dt>
+          <dd><span class="en" lang="en" dir="ltr">OpenAPI / Swagger</span></dd>
+        </div>
+        <div>
+          <dt>سیستم‌عامل</dt>
+          <dd><span class="en" lang="en" dir="ltr">Linux</span> (<span class="en" lang="en" dir="ltr">CLI</span> و محیط توسعه)</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="page-section" id="experience">
+      <h2>سوابق شغلی</h2>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>توسعه‌دهنده بک‌اند | پروژه Lunaya</h3>
+          <span class="company"><span class="en" lang="en" dir="ltr">Dayamooz</span></span>
+        </div>
+        <div class="role-date">آبان ۱۴۰۴ – اکنون &nbsp;&bull;&nbsp; ۷ ماه</div>
+        <ul class="bullets">
+          <li>طراحی و پیاده‌سازی اکثر مسیرهای (<span class="en" lang="en" dir="ltr">routes</span>) سیستم <span class="en" lang="en" dir="ltr">CRM</span> مدیریت واحدهای ملکی در دبی با <span class="en" lang="en" dir="ltr">FastAPI</span></li>
+          <li>توسعهٔ ماژول‌های لیستینگ، رزرو واحدها و محاسبهٔ کمیسیون با منطق تجاری پیچیده</li>
+          <li>همکاری برای تعریف معماری اولیه و انجام <span class="en" lang="en" dir="ltr">data import</span></li>
+          <li>پوشش طیف کامل <span class="en" lang="en" dir="ltr">API</span> از احراز هویت تا گزارش‌گیری</li>
+        </ul>
+        <p class="stack-line"><span class="label">Stack:</span><span class="en" lang="en" dir="ltr">FastAPI · Python · PostgreSQL</span></p>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>توسعه‌دهنده بک‌اند | پروژه Medlift</h3>
+          <span class="company"><span class="en" lang="en" dir="ltr">Dayamooz</span></span>
+        </div>
+        <div class="role-date">تیر ۱۴۰۴ – آبان ۱۴۰۴ &nbsp;&bull;&nbsp; ۴ ماه</div>
+        <ul class="bullets">
+          <li>توسعهٔ <span class="en" lang="en" dir="ltr">endpoint</span>های پلتفرم پزشکی با <span class="en" lang="en" dir="ltr">FastAPI</span> در محیط <span class="en" lang="en" dir="ltr">Agile</span></li>
+          <li>طراحی نقاط دسترسی مرتبط با دادهٔ پزشکی و فرایندهای کاری بالینی</li>
+        </ul>
+        <p class="stack-line"><span class="label">Stack:</span><span class="en" lang="en" dir="ltr">FastAPI · Python · PostgreSQL</span></p>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>توسعه‌دهنده بک‌اند | پروژه Truck</h3>
+          <span class="company"><span class="en" lang="en" dir="ltr">Dayamooz</span></span>
+        </div>
+        <div class="role-date">آبان ۱۴۰۳ – تیر ۱۴۰۴ &nbsp;&bull;&nbsp; ۹ ماه</div>
+        <ul class="bullets">
+          <li>طراحی و پیاده‌سازی بیش از ۳۰ <span class="en" lang="en" dir="ltr">endpoint</span> برای پنل مدیریتی با <span class="en" lang="en" dir="ltr">Django</span> و <span class="en" lang="en" dir="ltr">DRF</span></li>
+          <li>پیاده‌سازی دادهٔ مکانی با <span class="en" lang="en" dir="ltr">PostGIS</span> برای مسیرها و بارها</li>
+          <li>بهینه‌سازی کوئری و ادغام منطق جدید برای پایداری بیشتر <span class="en" lang="en" dir="ltr">API</span></li>
+          <li>مشارکت در <span class="en" lang="en" dir="ltr">Agile</span>، <span class="en" lang="en" dir="ltr">Jira</span> و استقرار با <span class="en" lang="en" dir="ltr">GitLab CI/CD</span></li>
+          <li>همکاری نزدیک با فرانت برای یکپارچگی بدون خطا</li>
+        </ul>
+        <p class="stack-line"><span class="label">Stack:</span><span class="en" lang="en" dir="ltr">Django · DRF · PostgreSQL · PostGIS · GitLab · Jira</span></p>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>کارآموز بک‌اند | پروژه Gamify</h3>
+          <span class="company"><span class="en" lang="en" dir="ltr">Dayamooz</span></span>
+        </div>
+        <div class="role-date">شهریور ۱۴۰۳ – آبان ۱۴۰۳ &nbsp;&bull;&nbsp; ۳ ماه</div>
+        <ul class="bullets">
+          <li>بیش از ۶۰٪ از <span class="en" lang="en" dir="ltr">API</span>های اصلی <span class="en" lang="en" dir="ltr">Gamify</span></li>
+          <li>طراحی اسکیمای <span class="en" lang="en" dir="ltr">MySQL</span></li>
+          <li><span class="en" lang="en" dir="ltr">Swagger/OpenAPI</span> و رعایت اصول <span class="en" lang="en" dir="ltr">RESTful</span></li>
+        </ul>
+        <p class="stack-line"><span class="label">Stack:</span><span class="en" lang="en" dir="ltr">Django · DRF · MySQL · Swagger · Git</span></p>
+      </article>
+    </section>
+
+    <section class="page-section" id="education">
+      <h2>سوابق تحصیلی</h2>
+      <div class="edu-block">
+        <p class="line"><strong>کارشناسی مهندسی کامپیوتر</strong></p>
+        <p class="line">دانشگاه خاوران <span aria-hidden="true" class="sep">|</span> مشهد</p>
+        <p class="line">۱۴۰۰ – ۱۴۰۴</p>
+      </div>
+    </section>
+
+    <section class="page-section" id="courses">
+      <h2>دوره‌های آموزشی</h2>
+      <p class="lede">
+        <span class="en" lang="en" dir="ltr">Code with Mosh (2024)</span> — دوره‌های پروژه‌محور:
+        <span class="en" lang="en" dir="ltr">Django &amp; REST, SQL, Docker &amp; DevOps, Java, Design Patterns, DSA</span>.
+      </p>
+    </section>
+
+    <section class="page-section" id="languages">
+      <h2>زبان‌ها</h2>
+      <p class="lede">
+        فارسی — زبان مادری
+        <span aria-hidden="true" class="sep">|</span>
+        انگلیسی — تسلط برای مستندات و ارتباطات فنی؛ آماده ارتقاء
+      </p>
+    </section>
+
+      </main>
+
+      <footer class="page-foot no-print">برای ذخیرهٔ PDF این صفحه را چاپ کنید یا از اسکریپت <code class="en" lang="en" dir="ltr">scripts/render_resume_pdf.py</code> استفاده کنید.</footer>
+    </div>
+  </div>
+</body>
+</html>
