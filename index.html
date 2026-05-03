@@ -39,6 +39,33 @@
       overflow-x: hidden;
     }
 
+    .skip-link {
+      position: fixed;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 80;
+      transform: translateY(-160%);
+      border-radius: 999px;
+      background: #1f3a5f;
+      color: #ffffff;
+      padding: 0.65rem 1rem;
+      font-weight: 800;
+      transition: transform 160ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .scroll-progress {
+      position: absolute;
+      inset: auto auto -1px 0;
+      height: 2px;
+      width: var(--scroll-progress, 0%);
+      background: linear-gradient(90deg, #9a6735, #1f3a5f);
+      transition: width 80ms linear;
+    }
+
     .glass {
       background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(18px);
@@ -64,6 +91,13 @@
       font-weight: 650;
       line-height: 1;
       white-space: nowrap;
+      max-width: 100%;
+    }
+
+    .contact-chip {
+      white-space: normal;
+      overflow-wrap: anywhere;
+      text-align: left;
     }
 
     .stack-chip {
@@ -86,6 +120,34 @@
       border-color: rgba(31, 58, 95, 0.24);
       box-shadow: 0 16px 42px rgba(23, 32, 51, 0.08);
       transform: translateY(-2px);
+    }
+
+    .metric-card {
+      background:
+        linear-gradient(135deg, rgba(31, 58, 95, 0.045), rgba(154, 103, 53, 0.055)),
+        #ffffff;
+    }
+
+    .role-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .role-list li {
+      position: relative;
+      padding-left: 1.35rem;
+    }
+
+    .role-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 0.42rem;
+      height: 0.42rem;
+      border-radius: 999px;
+      background: #9a6735;
+      box-shadow: 0 0 0 4px rgba(154, 103, 53, 0.10);
     }
 
     a:focus-visible,
@@ -132,6 +194,7 @@
   </style>
 </head>
 <body class="leading-relaxed antialiased">
+  <a href="#main-content" class="skip-link">Skip to content</a>
   <header id="header" class="fixed inset-x-0 top-0 z-50 border-b border-line/80 glass">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
       <a href="#hero" class="text-base font-black tracking-tight text-ink sm:text-lg">Mohammad Gholampour</a>
@@ -162,9 +225,10 @@
         <a href="#contact" class="rounded-lg px-3 py-2 hover:bg-paper hover:text-brand">Contact</a>
       </nav>
     </div>
+    <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section id="hero" class="relative overflow-hidden px-4 pt-28 sm:px-6 lg:pt-32">
       <div class="mx-auto grid max-w-6xl gap-10 pb-16 pt-10 md:grid-cols-[1.18fr_0.82fr] md:items-center md:pb-24">
         <div>
@@ -182,9 +246,9 @@
           </p>
 
           <div class="mt-7 flex flex-wrap gap-3">
-            <a class="chip hover:border-brand/40 hover:bg-white" href="tel:+989930142744">+98 993 014 2744</a>
-            <a class="chip hover:border-brand/40 hover:bg-white" href="mailto:m.gholampour2002@gmail.com">m.gholampour2002@gmail.com</a>
-            <a class="chip hover:border-brand/40 hover:bg-white" href="https://www.linkedin.com/in/mohammadgholampour" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="chip contact-chip hover:border-brand/40 hover:bg-white" href="tel:+989930142744">+98 993 014 2744</a>
+            <a class="chip contact-chip hover:border-brand/40 hover:bg-white" href="mailto:m.gholampour2002@gmail.com">m.gholampour2002@gmail.com</a>
+            <a class="chip contact-chip hover:border-brand/40 hover:bg-white" href="https://www.linkedin.com/in/mohammadgholampour" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
 
           <div class="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -217,6 +281,31 @@
             </div>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <section aria-label="Recruiter snapshot" class="px-4 pb-16 sm:px-6">
+      <div class="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="metric-card rounded-2xl border border-line p-5 shadow-sm">
+          <p class="text-xs font-black uppercase tracking-[0.18em] text-copper">Primary fit</p>
+          <p class="mt-2 text-lg font-black text-ink">Backend API roles</p>
+          <p class="mt-1 text-sm leading-6 text-muted">Python, Django, FastAPI, PostgreSQL.</p>
+        </article>
+        <article class="metric-card rounded-2xl border border-line p-5 shadow-sm">
+          <p class="text-xs font-black uppercase tracking-[0.18em] text-copper">Delivery</p>
+          <p class="mt-2 text-lg font-black text-ink">Production systems</p>
+          <p class="mt-1 text-sm leading-6 text-muted">30+ shipped endpoints across live products.</p>
+        </article>
+        <article class="metric-card rounded-2xl border border-line p-5 shadow-sm">
+          <p class="text-xs font-black uppercase tracking-[0.18em] text-copper">Domains</p>
+          <p class="mt-2 text-lg font-black text-ink">3 business areas</p>
+          <p class="mt-1 text-sm leading-6 text-muted">Logistics, healthcare, real estate CRM.</p>
+        </article>
+        <article class="metric-card rounded-2xl border border-line p-5 shadow-sm">
+          <p class="text-xs font-black uppercase tracking-[0.18em] text-copper">Workflow</p>
+          <p class="mt-2 text-lg font-black text-ink">Cross-functional</p>
+          <p class="mt-1 text-sm leading-6 text-muted">Frontend collaboration, Jira, GitLab CI/CD.</p>
+        </article>
       </div>
     </section>
 
@@ -319,7 +408,10 @@
                 </div>
                 <p class="shrink-0 rounded-full bg-white px-3 py-1.5 text-sm font-black text-copper">Oct 2025 – Present • 7 months</p>
               </div>
-              <ul class="mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
+              <p class="mt-5 rounded-xl border border-brand/10 bg-white px-4 py-3 text-sm font-bold leading-6 text-brand">
+                Full CRM API layer for listings, reservations, commissions, authentication, and reporting.
+              </p>
+              <ul class="role-list mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
                 <li>Designed and implemented the majority of API routes for a real estate CRM managing property listings, unit reservations, and commission workflows in Dubai.</li>
                 <li>Built end-to-end modules covering listing management, booking lifecycle, and commission calculation using FastAPI.</li>
                 <li>Collaborated with a senior engineer on system architecture decisions and initial data import pipeline.</li>
@@ -342,7 +434,10 @@
                 </div>
                 <p class="shrink-0 rounded-full bg-white px-3 py-1.5 text-sm font-black text-copper">Jul 2025 – Oct 2025 • 4 months</p>
               </div>
-              <ul class="mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
+              <p class="mt-5 rounded-xl border border-brand/10 bg-white px-4 py-3 text-sm font-bold leading-6 text-brand">
+                Healthcare API development with FastAPI in an Agile delivery environment.
+              </p>
+              <ul class="role-list mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
                 <li>Developed REST API endpoints for a healthcare platform using FastAPI in an Agile environment.</li>
                 <li>Designed endpoints for medical data management and clinical workflow automation.</li>
               </ul>
@@ -363,7 +458,10 @@
                 </div>
                 <p class="shrink-0 rounded-full bg-white px-3 py-1.5 text-sm font-black text-copper">Nov 2024 – Jul 2025 • 9 months</p>
               </div>
-              <ul class="mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
+              <p class="mt-5 rounded-xl border border-brand/10 bg-white px-4 py-3 text-sm font-bold leading-6 text-brand">
+                Sole backend ownership for a freight logistics admin panel with geospatial operations.
+              </p>
+              <ul class="role-list mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
                 <li>Designed and implemented 30+ REST API endpoints for the admin panel of a freight logistics system using Django and DRF.</li>
                 <li>Implemented geospatial data processing with PostGIS and PostgreSQL to manage routes, locations, and freight operations.</li>
                 <li>Optimized database queries and integrated new business logic to improve API performance and reliability.</li>
@@ -390,7 +488,10 @@
                 </div>
                 <p class="shrink-0 rounded-full bg-white px-3 py-1.5 text-sm font-black text-copper">Sep 2024 – Nov 2024 • 3 months</p>
               </div>
-              <ul class="mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
+              <p class="mt-5 rounded-xl border border-brand/10 bg-white px-4 py-3 text-sm font-bold leading-6 text-brand">
+                Internship focused on API delivery, MySQL schema design, and OpenAPI documentation.
+              </p>
+              <ul class="role-list mt-5 space-y-3 text-sm leading-7 text-muted sm:text-base">
                 <li>Contributed to 60%+ of the core API endpoints for the internal Gamify e-learning platform using Django and DRF.</li>
                 <li>Designed MySQL database schema for user management and educational content.</li>
                 <li>Documented all APIs with OpenAPI/Swagger; produced clean, testable RESTful code.</li>
@@ -470,6 +571,7 @@
     const header = document.getElementById("header");
     const mobileMenuButton = document.getElementById("mobile-menu-button");
     const mobileMenu = document.getElementById("mobile-menu");
+    const scrollProgress = document.getElementById("scroll-progress");
     const navLinks = document.querySelectorAll(".nav-item");
     const sections = document.querySelectorAll("main section[id]");
 
@@ -495,6 +597,9 @@
 
     const setActiveNav = () => {
       header.classList.toggle("is-scrolled", window.scrollY > 8);
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      scrollProgress.style.setProperty("--scroll-progress", `${Math.min(progress, 100)}%`);
       let active = "hero";
       const offset = header.offsetHeight + 80;
       sections.forEach((section) => {
